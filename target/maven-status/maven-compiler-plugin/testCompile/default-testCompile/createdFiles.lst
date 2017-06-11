@@ -1,0 +1,5 @@
+com/dlizarra/starter/support/AbstractWebIntegrationTest.class
+com/dlizarra/starter/support/AbstractUnitTest.class
+com/dlizarra/starter/user/UserServiceTest.class
+com/dlizarra/starter/user/UserRepositoryTest.class
+com/dlizarra/starter/support/AbstractIntegrationTest.class
