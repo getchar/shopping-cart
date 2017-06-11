@@ -1,3 +1,51 @@
-<h1>
-  {{title}}
-</h1>
+<div id="title_part">
+  <h1 align="center"> {{ title }} </h1>
+</div>
+<div id="products_part">
+  <div *ngFor="#product of products" style="height:320px">
+    <div style="width: 30%; start: 10px; float: left">
+      <img src="img/{{ product.imgsrc }}" />
+    </div>
+    <div style="width: 40%; start: 30%; float: right">
+      <p>
+	<b> {{ product.name }} </b> <br/>
+	<i> {{ product.snippet }} </i> <br/>
+	<span *ngFor="# deal of product.deals">
+	  <span *ngIf="deal.count == 1">
+	    price: {{ prettyPrice(deal.price) }} <br/>
+	  </span>
+	  <!-- Why can't I get else to work here? -->
+	  <span *ngIf="deal.count > 1">
+	    or get {{ deal.count }} for {{ prettyPrice(deal.price) }}! <br/>
+	  </span>
+	</span>
+      <p>
+	<button (click)="unbuy(product)">-</button>
+	<button (click)="buy(product)">+</button>
+	{{ customer.basket.getQuantity(product) }}
+	<span *ngIf="product.inventory == 0" style="color:red">SOLD OUT!</span>
+      </p>
+    </div>
+  </div>
+</div>
+<div id="basket_part">
+
+  <table style="table-layout:fixed; width:95%">
+    <tr align="right">
+      <td> <input [(ngModel)]="username"> </td>
+      <td> <button (click)="switchTo(username)">username</button> </td>
+    </tr>
+    <tr align="right">
+      <td> <b> item </b> </td>
+      <td> <b> quantity </b> </td>
+    </tr>
+    <tr *ngFor="#purchase of customer.basket.purchases" align="right" border="solid">
+      <td> {{ purchase.product.name }} </td>
+      <td> {{ purchase.quantity }} </td>
+    </tr>
+    <tr align="right">
+      <td> <button (click)="customer.basket.getTotal()">Total</button> </td>
+      <td> <span *ngIf="customer.basket.showTotal"> {{ prettyPrice(customer.basket.total) }} </span> </td>
+    </tr>
+  </table>
+</div>

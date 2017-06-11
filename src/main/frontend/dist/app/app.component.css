@@ -1,0 +1,26 @@
+#title_part {
+top: 0;
+height: 100px;
+width: 100%;
+position: fixed;
+z-index: 2;
+background: white;
+}
+
+#products_part {
+position: absolute;
+overflow-y: scroll;
+top: 100px;
+float: left;
+width: 75%;
+z-index: 1;
+}
+
+#basket_part {
+top: 100px;
+position: fixed;
+float: right;
+left: 75%;
+width: 25%;
+}
+
