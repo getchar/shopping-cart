@@ -17,6 +17,9 @@ var AppComponent = (function () {
         this.customers = [this.customer];
     }
     AppComponent.prototype.switchTo = function (username) {
+        if (!username) {
+            return;
+        }
         if (!this.customer.username) {
             this.customer.username = username;
             return;

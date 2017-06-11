@@ -14,6 +14,9 @@ export class AppComponent {
     customers: Customer[] = [this.customer];
 
     switchTo(username: string): void {
+	if (!username) {
+	    return;
+	}
 	if (!this.customer.username) {
 	    this.customer.username = username;
 	    return;
