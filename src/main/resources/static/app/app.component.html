@@ -1,12 +1,16 @@
 <div id="title_part">
+  <!-- Shows the title.  Stays still. -->
   <h1 align="center"> {{ title }} </h1>
 </div>
 <div id="products_part">
+  <!-- The section that displays the products.  Scrolls. -->
   <div *ngFor="#product of products" style="height:320px">
     <div style="width: 30%; start: 10px; float: left">
+      <!-- The picture of the product. -->
       <img src="img/{{ product.imgsrc }}" />
     </div>
     <div style="width: 40%; start: 30%; float: right">
+      <!-- The description of the product. -->
       <p>
 	<b> {{ product.name }} </b> <br/>
 	<i> {{ product.snippet }} </i> <br/>
@@ -20,6 +24,7 @@
 	  </span>
 	</span>
       <p>
+	<!-- Buttons to buy and unbuy the project. -->
 	<button (click)="unbuy(product)">-</button>
 	<button (click)="buy(product)">+</button>
 	{{ customer.basket.getQuantity(product) }}
@@ -29,10 +34,12 @@
   </div>
 </div>
 <div id="basket_part">
-
+  <!-- Displays items in the basket.  Doesn't move. -->
   <table style="table-layout:fixed; width:95%">
+    <!-- Bit of a cheat to use a table.  Only the middle portion really tabular.  First and last rows just for formatting. -->
     <tr align="right">
       <td> <input [(ngModel)]="username"> </td>
+      <!-- Store value as uername, to set as username of customer. -->
       <td> <button (click)="switchTo(username)">username</button> </td>
     </tr>
     <tr align="right">
@@ -40,10 +47,12 @@
       <td> <b> quantity </b> </td>
     </tr>
     <tr *ngFor="#purchase of customer.basket.purchases" align="right" border="solid">
+      <!-- This protion of the table expands and contracts to show all purchased items and their quantities. -->
       <td> {{ purchase.product.name }} </td>
       <td> {{ purchase.quantity }} </td>
     </tr>
     <tr align="right">
+      <!-- For calculating, showing the total. -->
       <td> <button (click)="customer.basket.getTotal()">Total</button> </td>
       <td> <span *ngIf="customer.basket.showTotal"> {{ prettyPrice(customer.basket.total) }} </span> </td>
     </tr>
